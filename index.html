@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Style normalization link -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css"
+    />
+    <link rel="icon" type="image/svg+xml" href="/js-95-SvitlanaHu/favicon.svg" />
+    
+    
+    <title>Food Boutique</title>
+    
+    <script type="module" crossorigin src="/js-95-SvitlanaHu/commonHelpers2.js"></script>
+    <link rel="modulepreload" crossorigin href="/js-95-SvitlanaHu/assets/scrollup-9bd49462.js">
+    <link rel="modulepreload" crossorigin href="/js-95-SvitlanaHu/assets/vendor-f5f845be.js">
+    <link rel="stylesheet" href="/js-95-SvitlanaHu/assets/scrollup-001c7488.css">
+    <link rel="stylesheet" href="/js-95-SvitlanaHu/assets/vendor-a0b14d8a.css">
+  </head>
+  <body class="index-body">
+    <header class="header">
+  <nav class="container header-container">
+    <a class="header-logo" href="./index.html">
+      <svg class="header-logo-box">
+        <use
+          class="logo"
+          href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-tdesign_cabbage"
+          width="20"
+        ></use>
+      </svg>
+      <span class="text-logo">Food Boutique</span>
+    </a>
+
+    <ul class="list header-nav">
+      <li>
+        <a href="./index.html" class="home-btn"
+          ><span class="home-btn-text">Home</span></a
+        >
+      </li>
+      <li>
+        <a class="header-logo" href="cart-page.html">
+          <svg class="header-logo-box">
+            <use
+              class="logo"
+              href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-heroicons-solid_shopping-cart-18x18"
+              width="20"
+            ></use>
+          </svg>
+
+          <p>Cart (<span class="numbers-of-products">0</span>)</p></a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
+
+
+    <!-- Централізований лоадер для всіх AJAX-запитів -->
+    <main class="main-container intro-content">
+      <div class="loader" hidden></div>
+      <div id="main-content">
+        <section class="hero">
+  <div class="container">
+    <h1 class="hero-title">
+      Welcome to the <span class="hero-focus">Food</span> Boutique!
+    </h1>
+    <p class="hero-subtitle">
+      With Food Boutique, you're not just subscribing to food, you're signing up
+      for a fresher, fitter, and happier you.
+    </p>
+    <div class="hero-img">
+      <picture>
+        <!-- Desktop screen -->
+        <source
+          media="(min-width: 1440px)"
+          srcset="/js-95-SvitlanaHu/assets/women-sportswear-working-out-outdoors1-0005b862.jpg 1x, /js-95-SvitlanaHu/assets/women-sportswear-working-out-outdoors1@2x-86e91e95.jpg 2x"
+        />
+
+        <!-- Tablet screen -->
+        <source
+          media="(min-width: 768px)"
+          srcset="/js-95-SvitlanaHu/assets/women-sportswear-working-out-outdoors1-61e9c9b1.jpg 1x, /js-95-SvitlanaHu/assets/women-sportswear-working-out-outdoors1@2x-37b35d5d.jpg 2x"
+        />
+        <!-- Mobile screen -->
+        <source
+          media="(max-width: 767px)"
+          srcset="/js-95-SvitlanaHu/assets/women-sportswear-working-out-outdoors1-d0c1b530.jpg 1x, /js-95-SvitlanaHu/assets/women-sportswear-working-out-outdoors1@2x-14c419b7.jpg 2x"
+        />
+        <img
+          src="/img/hero/desktop/women-sportswear-working-out-outdoors1.jpg"
+          alt="fresh vegetables in a box"
+        />
+      </picture>
+      <svg width="100" height="100" class="icon icon-organic-food">
+        <use href="/js-95-SvitlanaHu/assets/organic-food-desk-f2b6ceb3.svg#icon-organic-food"></use>
+      </svg>
+    </div>
+  </div>
+</section>
+
+        <div class="filters-container" id="search-container">
+  <p class="filters-text container">Filters:</p>
+  <div class="search-container container" >
+    <form class="js-search-form" id="search-form" autocomplete="off">
+      <div class="search-wrapper">
+        <input
+          class="search-input"
+          name="item-search-value"
+          id="search-bar-id"
+          type="text"
+          placeholder="Search for anything"
+        />
+        <button class="search-filter-btn" type="submit">
+          <svg class="search-filter-icon filters-icon" width="20" height="20">
+            <use
+              href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-ic_baseline-search-20x20"
+            ></use>
+          </svg>
+        </button>
+      </div>
+      <div class="categories-wrapper search-wrapper">
+        <select id="category-select" class="category-input select-container">
+          <option value="Show all">Show all</option>
+          <!-- Тут будуть додані категорії динамічно через JavaScript -->
+        </select>
+      </div>
+      <div class="sorting-wrapper search-wrapper">
+        <select id="sorting-select" class="sorting-input select-container">
+          <option value="byABC">Sort A-Z</option>
+          <option value="byPrice">Sort by Price</option>
+          <option value="byPopularity">Sort by Popularity</option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>
+
+        <div class="main-box">
+          <div class="all-products-container">
+            <div class="products-list-and-pagination">
+              <div class="no-results-container container visually-hidden">
+  <p class="no-results-text">
+    Nothing was found for the selected
+    <span class="filter-word">filters...</span>
+  </p>
+  <p class="adjust-text">
+    Try adjusting your search parameters or browse our range by other criteria
+    to find the perfect product for you.
+  </p>
+</div>
+<div id="products-list-container">
+  <!-- Тут буде рендеритися список продуктів -->
+</div>
+<!-- Контейнер для пагінації -->
+<div id="tui-pagination-container" class="tui-pagination"></div>
+
+            </div>
+            <div class="side-bar">
+              <div class="popular-container">
+  <h2 class="popular-products-title">Popular products</h2>
+
+  <ul class="popular-product-list"></ul>
+</div>
+
+              <div class="container-discount">
+  <h1 class="discount-title">Discount products</h1>
+  <ul id="discount-products"></ul>
+  <div id="pagination" class="pagination"></div>
+</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+  <div class="footer-block container">
+    <div class="footer-main-info">
+      <div class="footer-logo-block">
+        <a class="footer-logo" href="./index.html">
+          <svg class="footer-icon">
+            <use
+              class="logo"
+              href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-tdesign_cabbage"
+            ></use>
+          </svg>
+          <span class="footer-logo-text">Food Boutique</span>
+        </a>
+        <div class="social">
+          <ul class="social-list">
+            <li class="social-list-item">
+              <a
+                target="_blank"
+                class="social-link"
+                href="https://www.facebook.com/goITclub/"
+              >
+                <svg class="social-link-icons">
+                  <use href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-fb"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social-list-item">
+              <a
+                target="_blank"
+                class="social-link"
+                href="https://www.instagram.com/goitclub/"
+              >
+                <svg class="social-link-icons">
+                  <use href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-instagram"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social-list-item">
+              <a
+                target="_blank"
+                class="social-link"
+                href="https://www.youtube.com/c/GoIT"
+              >
+                <svg class="social-link-icons">
+                  <use href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-youtube"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tablet-disc-form">
+        <div class="footer-desc-block">
+          <h1 class="footer-sub-title">
+            Discover the Variety of Flavors and Quality
+          </h1>
+          <p class="footer-desc-text">
+            An online store where you will find fresh, natural and delicious
+            products for a healthy life and unforgettable gastronomic
+            adventures.
+          </p>
+        </div>
+        <div class="footer-sub-form-block">
+          <p class="form-title">Subscribe and learn about new products!</p>
+          <form action="submit" class="footer-sub-form">
+            <label class="submit-label">
+              <input
+                class="footer-email-input"
+                type="email"
+                name="email-submit"
+                placeholder="Email"
+                pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                required
+                autocomplete="email"
+              />
+            </label>
+            <div class="modal-link" data-modal="email ">
+              <button type="submit" class="footer-sub-btn js-sub-btn">
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="sec-info">
+      <p class="footer-serv">Food Boutique. All rights reserved.</p>
+      <div class="pr-term">
+        <a
+          class="privacy"
+          href="https://goit.global/ua/privacy-policy/"
+          target="_blank"
+          >Privacy Policy</a
+        >
+        <p>/</p>
+        <a
+          class="terms"
+          href="https://goit.global/ua/terms-of-use/"
+          target="_blank"
+          >Terms of Service</a
+        >
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="success-modal">
+  <div class="success-modal-interface">
+    <svg class="close-modal-btn close-svg" width="14" height="14">
+      <use href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-close-sharp"></use>
+    </svg>
+    <div class="success-text">
+      <h1 class="success-title">
+        Thanks for subscribing for
+        <span class="success-color">new</span> products
+      </h1>
+      <p class="success-p">
+        We promise you organic and high-quality products that will meet your
+        expectations. Please stay with us and we promise you many pleasant
+        surprises.
+      </p>
+    </div>
+      <div class="modal-img">
+        <picture>
+          <!-- Tablet & Desktop screen -->
+          <source
+            media="(min-width: 768px)"
+            width="490"
+            srcset="/js-95-SvitlanaHu/assets/modal-60a4aeb6.png 1x, /js-95-SvitlanaHu/assets/modal@2x-32b53004.png 2x"
+          />
+          <!-- Mobile screen -->
+          <source
+            media="(max-width: 767px)"
+            width="335"
+            height="144"
+            srcset="/js-95-SvitlanaHu/assets/modal-mobile-2baa4dae.png 1x, /js-95-SvitlanaHu/assets/modal-mobile@2x-f6350707.png 2x"
+          />
+          <img src="/js-95-SvitlanaHu/assets/modal-mobile-2baa4dae.png" alt="vegetables in a box" />
+        </picture>
+      </div>
+    
+  </div>
+</div>
+
+<div class="failure-modal">
+  <div class="failure-modal-interface">
+    <svg class="close-modal-btn close-svg" width="14" height="14">
+      <use href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-close-sharp"></use>
+    </svg>
+    <div class="failure-text">
+      <h1 class="failure-title">
+        This <span class="failure-color">email address</span> has already been
+        entered
+      </h1>
+      <p class="failure-p">
+        You have already subscribed to our new products. Watch for offers at the
+        mailing address.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- Loads the specified .html file -->
+    <div class="scroll-up">
+      <!-- <button class="top-btn">
+  <svg width="40">
+    <use href="./img/icone/symbol-defs.svg#icon-up-arrow"></use>
+  </svg>
+</button> -->
+<!-- 
+  <picture>
+    <source srcset="img/Home/smallRocket.webp" type="image/webp" />
+    <img src="img/Home/smallRocket.png" alt="Rocket" />
+  </picture> -->
+<!-- <svg class="scroll-up-arrow">
+  <use href="/img/icone/symbol-defs.svg#icon-up-arrow"></use>
+</svg> -->
+
+<svg class="scroll-up__svg" viewBox="-2 -2 52 52">
+  <path
+    class="scroll-up__svg-path"
+    d="M24, 0 a24, 24 0 0, 1 0, 48 a24, 24 0 0, 1 0, -48"
+  />
+</svg>
+
+    </div>
+  </body>
+</html>

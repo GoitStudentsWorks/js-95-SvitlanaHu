@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CartBoutiquePage</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css"
+    />
+    <link rel="icon" type="image/svg+xml" href="/js-95-SvitlanaHu/favicon.svg" />
+    
+    
+    <script type="module" crossorigin src="/js-95-SvitlanaHu/commonHelpers.js"></script>
+    <link rel="modulepreload" crossorigin href="/js-95-SvitlanaHu/assets/scrollup-9bd49462.js">
+    <link rel="stylesheet" href="/js-95-SvitlanaHu/assets/scrollup-001c7488.css">
+    <link rel="stylesheet" href="/js-95-SvitlanaHu/assets/cart-page-52bb725e.css">
+  </head>
+  <body class="index-body">
+    <header class="header">
+  <nav class="container header-container">
+    <a class="header-logo" href="./index.html">
+      <svg class="header-logo-box">
+        <use
+          class="logo"
+          href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-tdesign_cabbage"
+          width="20"
+        ></use>
+      </svg>
+      <span class="text-logo">Food Boutique</span>
+    </a>
+
+    <ul class="list header-nav">
+      <li>
+        <a href="./index.html" class="home-btn"
+          ><span class="home-btn-text">Home</span></a
+        >
+      </li>
+      <li>
+        <a class="header-logo" href="cart-page.html">
+          <svg class="header-logo-box">
+            <use
+              class="logo"
+              href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-heroicons-solid_shopping-cart-18x18"
+              width="20"
+            ></use>
+          </svg>
+
+          <p>Cart (<span class="numbers-of-products">0</span>)</p></a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
+
+    <main class="main-container">
+      <section class="cart-page-section container">
+  <div class="cart-wrap-title">
+    <span class="cart-page-shop-icon"
+      ><svg class="cart-icon" width="18" height="18">
+        <use
+          href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-heroicons-solid_shopping-cart-18x18"
+        ></use></svg
+    ></span>
+    <h1 class="cart-title">
+      Cart (<span class="js-number-of-products">0</span>)
+    </h1>
+  </div>
+
+  <div class="empty-basket-wrap">
+    <div class="empty-basket-content" hidden>
+      <img
+        class="basket_img"
+        srcset="/js-95-SvitlanaHu/assets/basket_1x-791cbee1.png 1x, /js-95-SvitlanaHu/assets/basket_1x-791cbee1.png 2x"
+        src="/js-95-SvitlanaHu/assets/basket_1x-791cbee1.png"
+        alt="yellow shopping basket"
+        width="132"
+        height="114"
+      />
+      <div class="basket_container_text">
+        <h3 class="basket_title">
+          Your basket is <span class="basket_title_span">empty...</span>
+        </h3>
+        <p class="basket-text">
+          Go to the main page to select your favorite products and add them to
+          the cart.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content-with-delete-all" hidden>
+    <div class="delete-all-btn-wrap js-delete-all-btn">
+      <a href="#" class="delete-all-btn"
+        >Delete all
+        <span class="delete-all-btn-icon"
+          ><svg class="" width="14" height="14">
+            <use
+              href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#close-button"
+            ></use></svg></span
+      ></a>
+    </div>
+
+    <div class="cart-main-content">
+      <div class="scroll-container">
+        <ul class="cart-list js-cart-list"></ul>
+      </div>
+
+      <div class="order-content">
+        <h2 class="order-title">Your Order</h2>
+        <div class="total-wrap">
+          <span class="text-total">Total</span>
+          <span class="total-price-text"
+            ><span class="total-light-text">Sum:&nbsp;&nbsp;</span>$<span
+              class="js-cart-amount"
+              >0</span
+            ></span
+          >
+        </div>
+        <form class="order-form">
+          <label for="user-email" class="order-label">Mail: </label>
+          <input
+            type="email"
+            name="email"
+            id="user-email"
+            class="order-form-input"
+            placeholder="Enter your email"
+            autocomplete="on"
+          />
+          <button type="submit" id="open-modal-btn" class="order-btn-submit">
+            Checkout
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- МОДАЛЬНЕ ВІКНО В КОРЗИНІ -->
+<div class="modal" id="my-modal">
+  <div class="modal__box">
+    <button class="modal__close-btn" id="close-my-modal-btn">
+      <svg class="close-modal-btn" width="14" height="14">
+        <use href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-close-sharp"></use>
+      </svg>
+    </button>
+    <div class="img-cart-modal"></div>
+    <h2 class="order-success-title">Order success</h2>
+
+    <p class="order-success-text">
+      Thank you for shopping at Food Boutique. Your order has been received and
+      is now being freshly prepared just for you! Get ready to indulge in
+      nourishing goodness, delivered right to your doorstep. We're thrilled to
+      be part of your journey to better health and happiness.
+    </p>
+  </div>
+</div>
+
+      <div class="list-modal" id="list-modal">
+  <div class="modal-li">
+    <svg width="15" height="15" id="close-modal">
+      <use href="/js-95-SvitlanaHu/assets/favicon-1e637930.svg#Vector"></use>
+    </svg>
+  </div>
+</div>
+
+<a href="#" class="modal-link" data-modal="food"></a>
+<a href="#" class="modal-link" data-modal="new-products"></a>
+<!-- <a href="#" class="modal-link" data-modal="email "></a> -->
+<a href="#" class="modal-link" data-modal="order-success"></a>
+
+<!-- Вікно на продуктову картку -->
+
+<!-- <div class="modal-window modal-food" data-modal="food">
+  <svg class="modal-close-sharp-box js-modal-close">
+    <use
+      class="modal-close-sharp"
+      href="./img/icone/symbol-defs.svg#icon-close-sharp"
+      width="22"
+      hight="22"
+    ></use>
+  </svg>
+  <div class="modal-main-block">
+    <div class="modal-product-img-box">
+      <img
+        class="modal-product-img"
+        src="../img/modal/image-success.png"
+        alt="name"
+      />
+    </div>
+    <div class="modal-info-box">
+      <div class="modal-info-id">
+        <h1 class="modal-name-id">name</h1>
+        <ul class="modal-text-box">
+          <li class="modal-text-box-item">
+            <p class="modal-text-id">
+              Category: <span class="modal-text-span-id"></span>category
+            </p>
+          </li>
+          <li class="modal-text-box-item">
+            <p class="modal-text-id">
+              Size: <span class="modal-text-span-id"></span>size
+            </p>
+          </li class="modal-text-box-item">
+          <li>
+            <p class="modal-text-id">
+              Popularity: <span class="modal-text-span-id"></span>popularity
+            </p>
+          </li>
+        </ul>
+      </div>
+      <p class="modal-product-descr">describe</p>
+    </div>
+  </div>
+  <div class="modal-nav"></div>
+</div> -->
+
+<!-- Підписка на нові продукти -->
+<div class="modal-window modal-new-products" data-modal="new-products">
+  <svg class="modal-close-sharp-box js-modal-close">
+    <use
+      class="modal-close-sharp"
+      href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-close-sharp"
+      width="22"
+      hight="22"
+    ></use>
+  </svg>
+  <h2 class="modal-new-products-title">
+    Thanks for subscribing for <span class="modal-span">new</span> products
+  </h2>
+  <p class="modal-new-products-text">
+    We promise you organic and high-quality products that will meet your
+    expectations. Please stay with us and we promise you many pleasant
+    surprises.
+  </p>
+  <div class="modal-img">
+    <picture>
+      <!-- Tablet & Desktop screen -->
+      <source
+        media="(min-width: 768px)"
+        width="490"
+        srcset="/js-95-SvitlanaHu/assets/modal-60a4aeb6.png 1x, /js-95-SvitlanaHu/assets/modal-60a4aeb6.png 2x"
+      />
+      <!-- Mobile screen -->
+      <source
+        media="(max-width: 767px)"
+        width="335"
+        srcset="/js-95-SvitlanaHu/assets/modal-mobile-2baa4dae.png 1x, /js-95-SvitlanaHu/assets/modal-mobile-2baa4dae.png 2x"
+      />
+      <img src="/js-95-SvitlanaHu/assets/modal-mobile-2baa4dae.png" alt="vegetables in a box" />
+    </picture>
+  </div>
+</div>
+
+<!-- Вікно в корзині -->
+<!-- <div class="modal-window modal-order-success" data-modal="order-success">
+  <svg class="modal-close-sharp-box js-modal-close">
+    <use
+      class="modal-close-sharp"
+      href="./img/icone/symbol-defs.svg#icon-close-sharp"
+    ></use>
+  </svg>
+  <div class="modal-success-img">
+    <svg>
+      <use
+        href="./img/icone/symbol-defs.svg#icon-order-placed-purchased-icon"
+      ></use>
+    </svg>
+     <picture>
+      <img
+        width="140"
+        srcset="
+          ./img/modal/image-success.png 1x,
+          ./img/modal/image-success.png 2x
+        "
+        src="./img/modal/image-success.png"
+        alt="tomato"
+      />
+    </picture>
+</div>
+  <h2 class="modal-text-uppercase">Order success</h2>
+  <p class="modal-new-products-text">
+    Thank you for shopping at Food Boutique. Your order has been received and is
+    now being freshly prepared just for you! Get ready to indulge in nourishing
+    goodness, delivered right to your doorstep. We're thrilled to be part of
+    your journey to better health and happiness.
+  </p>
+</div> -->
+
+    </main>
+    <footer class="footer">
+  <div class="footer-block container">
+    <div class="footer-main-info">
+      <div class="footer-logo-block">
+        <a class="footer-logo" href="./index.html">
+          <svg class="footer-icon">
+            <use
+              class="logo"
+              href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-tdesign_cabbage"
+            ></use>
+          </svg>
+          <span class="footer-logo-text">Food Boutique</span>
+        </a>
+        <div class="social">
+          <ul class="social-list">
+            <li class="social-list-item">
+              <a
+                target="_blank"
+                class="social-link"
+                href="https://www.facebook.com/goITclub/"
+              >
+                <svg class="social-link-icons">
+                  <use href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-fb"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social-list-item">
+              <a
+                target="_blank"
+                class="social-link"
+                href="https://www.instagram.com/goitclub/"
+              >
+                <svg class="social-link-icons">
+                  <use href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-instagram"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social-list-item">
+              <a
+                target="_blank"
+                class="social-link"
+                href="https://www.youtube.com/c/GoIT"
+              >
+                <svg class="social-link-icons">
+                  <use href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-youtube"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tablet-disc-form">
+        <div class="footer-desc-block">
+          <h1 class="footer-sub-title">
+            Discover the Variety of Flavors and Quality
+          </h1>
+          <p class="footer-desc-text">
+            An online store where you will find fresh, natural and delicious
+            products for a healthy life and unforgettable gastronomic
+            adventures.
+          </p>
+        </div>
+        <div class="footer-sub-form-block">
+          <p class="form-title">Subscribe and learn about new products!</p>
+          <form action="submit" class="footer-sub-form">
+            <label class="submit-label">
+              <input
+                class="footer-email-input"
+                type="email"
+                name="email-submit"
+                placeholder="Email"
+                pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                required
+                autocomplete="email"
+              />
+            </label>
+            <div class="modal-link" data-modal="email ">
+              <button type="submit" class="footer-sub-btn js-sub-btn">
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="sec-info">
+      <p class="footer-serv">Food Boutique. All rights reserved.</p>
+      <div class="pr-term">
+        <a
+          class="privacy"
+          href="https://goit.global/ua/privacy-policy/"
+          target="_blank"
+          >Privacy Policy</a
+        >
+        <p>/</p>
+        <a
+          class="terms"
+          href="https://goit.global/ua/terms-of-use/"
+          target="_blank"
+          >Terms of Service</a
+        >
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="success-modal">
+  <div class="success-modal-interface">
+    <svg class="close-modal-btn close-svg" width="14" height="14">
+      <use href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-close-sharp"></use>
+    </svg>
+    <div class="success-text">
+      <h1 class="success-title">
+        Thanks for subscribing for
+        <span class="success-color">new</span> products
+      </h1>
+      <p class="success-p">
+        We promise you organic and high-quality products that will meet your
+        expectations. Please stay with us and we promise you many pleasant
+        surprises.
+      </p>
+    </div>
+      <div class="modal-img">
+        <picture>
+          <!-- Tablet & Desktop screen -->
+          <source
+            media="(min-width: 768px)"
+            width="490"
+            srcset="/js-95-SvitlanaHu/assets/modal-60a4aeb6.png 1x, /js-95-SvitlanaHu/assets/modal@2x-32b53004.png 2x"
+          />
+          <!-- Mobile screen -->
+          <source
+            media="(max-width: 767px)"
+            width="335"
+            height="144"
+            srcset="/js-95-SvitlanaHu/assets/modal-mobile-2baa4dae.png 1x, /js-95-SvitlanaHu/assets/modal-mobile@2x-f6350707.png 2x"
+          />
+          <img src="/js-95-SvitlanaHu/assets/modal-mobile-2baa4dae.png" alt="vegetables in a box" />
+        </picture>
+      </div>
+    
+  </div>
+</div>
+
+<div class="failure-modal">
+  <div class="failure-modal-interface">
+    <svg class="close-modal-btn close-svg" width="14" height="14">
+      <use href="/js-95-SvitlanaHu/assets/symbol-defs-2260a6ca.svg#icon-close-sharp"></use>
+    </svg>
+    <div class="failure-text">
+      <h1 class="failure-title">
+        This <span class="failure-color">email address</span> has already been
+        entered
+      </h1>
+      <p class="failure-p">
+        You have already subscribed to our new products. Watch for offers at the
+        mailing address.
+      </p>
+    </div>
+  </div>
+</div>
+
+    
+    <!-- <script type="module" src="./js/popular.js" defer></script> -->
+    
+    
+    <div class="scroll-up">
+      <!-- <button class="top-btn">
+  <svg width="40">
+    <use href="./img/icone/symbol-defs.svg#icon-up-arrow"></use>
+  </svg>
+</button> -->
+<!-- 
+  <picture>
+    <source srcset="img/Home/smallRocket.webp" type="image/webp" />
+    <img src="img/Home/smallRocket.png" alt="Rocket" />
+  </picture> -->
+<!-- <svg class="scroll-up-arrow">
+  <use href="/img/icone/symbol-defs.svg#icon-up-arrow"></use>
+</svg> -->
+
+<svg class="scroll-up__svg" viewBox="-2 -2 52 52">
+  <path
+    class="scroll-up__svg-path"
+    d="M24, 0 a24, 24 0 0, 1 0, 48 a24, 24 0 0, 1 0, -48"
+  />
+</svg>
+
+    </div>
+  </body>
+</html>
